@@ -32,3 +32,14 @@
 - top 获取队首值
 - size 获取队列个数
 - clear 清空队列
+
+### 双端队列
+
+- 双端队列(double-ended queue) 指的是允许同时从队尾和队首两端进行存取操作的队列，操作更加灵活。
+- 双端队列与 JavaScript 中的数组操作十分类似，只是不允许在数组两端以外的位置进行存取操作。
+
+#### 实现
+
+- addFront/addBack
+- removeFront/removeBack
+- frontTop/backTop

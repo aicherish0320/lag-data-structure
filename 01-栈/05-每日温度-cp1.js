@@ -22,25 +22,26 @@
 //   return result
 // }
 // 方法2：栈结构
-const dailyTemperatures = function (temperatures) {
-  const stack = [0]
-  let count = 1
+// const dailyTemperatures = function (temperatures) {
+//   // 单调递减的单调栈
+//   const stack = [0]
+//   let count = 1
 
-  const len = temperatures.length
-  const arr = new Array(len).fill(0)
+//   const len = temperatures.length
+//   const arr = new Array(len).fill(0)
 
-  for (let i = 1; i < len; i++) {
-    const temp = temperatures[i]
-    while (count && temp > T[stack[count - 1]]) {
-      let index = stack.pop()
-      count--
-      arr[index] = i - index
-    }
-    stack.push(i)
-    count++
-  }
-  return arr
-}
+//   for (let i = 1; i < len; i++) {
+//     const temp = temperatures[i]
+//     while (count && temp > T[stack[count - 1]]) {
+//       let index = stack.pop()
+//       count--
+//       arr[index] = i - index
+//     }
+//     stack.push(i)
+//     count++
+//   }
+//   return arr
+// }
 
 console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]))
 console.log(dailyTemperatures([30, 40, 50, 60]))

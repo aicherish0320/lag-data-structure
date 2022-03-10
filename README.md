@@ -16,7 +16,57 @@
 
 ## 时间复杂度
 
+- 时间复杂度就是一个函数，用大 O 表示，比如 O(1)、O(n)、O(logN)
+- 定性描述该算法的运行时间
+
+```js
+// O(1)
+// 每次执行此代码 都只会执行一次
+let i = 0
+i += 1
+// O(n)
+for (let i = 0; i < n; i++) {
+  console.log(i)
+}
+// O(1) + O(n) = O(n)
+
+// O(n) * O(n) = O(n^2)
+for (let i = 0; i < n; i++) {
+  for (let j = 0; j < n; j++) {
+    console.log(i, j)
+  }
+}
+// O(logN)
+let i = 1
+while (i < n) {
+  console.log(i)
+  i *= 2
+}
+```
+
 ## 空间复杂度
+
+- 一个函数，用大 O 表示，比如 O(1)、O(n)、O(n^2)
+- 算法在运行过程中临时占用存储空间大小的量度
+
+```js
+// O(1)
+let i = 0
+i += 1
+// O(n)
+const list = []
+for (let i = 0; i < n; i += 1) {
+  list.push(i)
+}
+// O(n^2)
+const matrix = []
+for (let i = 0; i < n; i += 1) {
+  matrix.push([])
+  for (let j = 0; j < n; j += 1) {
+    matrix[i].push([j])
+  }
+}
+```
 
 ## 栈
 

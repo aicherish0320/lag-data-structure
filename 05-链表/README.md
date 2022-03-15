@@ -11,3 +11,37 @@
 ## JS 中的链表
 
 js 中没有链表这个数据结构，可以使用 object 来模拟
+
+## 原型链简介
+
+- 原型链的本质是链表
+- 原型链上的节点是各种原型对象，比如：`Function.prototype`、`Object.prototype`
+- 原型链通过 `__proto__` 属性连接各种原型对象
+
+> obj -> Object.prototype -> null
+> func -> Function.prototype -> Object.prototype -> null
+> arr -> Array.prototype -> Object.prototype -> null
+
+### 原型链知识点
+
+- 如果 A 沿着原型链能找到 B.prototype，那么 `A instanceof B` 为 true
+- 如果在 A 对象上没有找到 x 属性，那么会沿着原型链找 x 属性
+
+### 面试题一
+
+> instanceof 的原理，并用代码实现
+
+### 面试题二
+
+```js
+  var foo = {},
+    F = function(){}
+  Object.prototype.a = 'value a
+  Function.prototype.b = 'value b
+
+  console.log(foo.a)
+  console.log(foo.b)
+
+  console.log(F.a)
+  console.log(F.b)
+```

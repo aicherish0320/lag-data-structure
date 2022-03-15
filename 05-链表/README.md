@@ -45,3 +45,5 @@ js 中没有链表这个数据结构，可以使用 object 来模拟
   console.log(F.a)
   console.log(F.b)
 ```
+
+> 总结：链表里的元素存储不是连续的，之间通过 next 连接，JavaScript 中没有链表，但可以用 Object 模拟链表，链表常用操作：遍历链表、修改 next

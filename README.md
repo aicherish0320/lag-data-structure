@@ -20,6 +20,28 @@
 
 ## 空间复杂度
 
+- 一个函数，用大 O 表示，比如 O(1)、O(n)、O(n^2)
+- 算法在运行过程中临时占用存储空间大小的量度
+
+```js
+// O(1)
+let i = 0
+i += 1
+// O(n)
+const list = []
+for (let i = 0; i < n; i += 1) {
+  list.push(i)
+}
+// O(n^2)
+const matrix = []
+for (let i = 0; i < n; i += 1) {
+  matrix.push([])
+  for (let j = 0; j < n; j += 1) {
+    matrix[i].push([j])
+  }
+}
+```
+
 ## 栈
 
 ### 1. 概念

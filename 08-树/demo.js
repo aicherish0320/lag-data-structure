@@ -1,6 +1,6 @@
 const { bt } = require('./bt')
 /*
-  深度优先遍历
+  ! 深度优先遍历
 */
 // const dfs = (root) => {
 //   if (!root) return
@@ -10,7 +10,7 @@ const { bt } = require('./bt')
 // }
 // dfs(bt)
 /*
-  广度优先遍历
+  ! 广度优先遍历
 */
 // const bfs = (root) => {
 //   if (!root) return
@@ -25,7 +25,7 @@ const { bt } = require('./bt')
 // bfs(bt)
 
 /*
-  二叉树先序遍历
+ !  二叉树先序遍历
 */
 // const preOrder = (root) => {
 //   if (!root) return
@@ -48,7 +48,7 @@ const { bt } = require('./bt')
 // preOrder(bt)
 
 /*
-  二叉树中序遍历
+  ! 二叉树中序遍历
 */
 // const inOrder = (root) => {
 //   if (!root) return
@@ -74,7 +74,7 @@ const { bt } = require('./bt')
 // }
 // inOrder(bt)
 /*
-二叉树后序遍历
+  ! 二叉树后序遍历
 */
 // const postOrder = (root) => {
 //   if (!root) return

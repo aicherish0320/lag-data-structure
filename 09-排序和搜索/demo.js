@@ -67,35 +67,61 @@
 // 把数组劈成两半，再递归对子数组进行分操作，直到分成一个个单独的数
 // 把两个数合并为有序数组
 
-Array.prototype.mergeSort = function () {
-  const rec = (arr) => {
-    if (arr.length === 1) return arr
+// Array.prototype.mergeSort = function () {
+//   const rec = (arr) => {
+//     if (arr.length === 1) return arr
 
-    const mid = Math.floor(arr.length / 2)
-    const left = arr.slice(0, mid)
-    const right = arr.slice(mid)
+//     const mid = Math.floor(arr.length / 2)
+//     const left = arr.slice(0, mid)
+//     const right = arr.slice(mid)
 
-    const orderLeft = rec(left)
-    const orderRight = rec(right)
+//     const orderLeft = rec(left)
+//     const orderRight = rec(right)
 
-    const res = []
-    while (orderLeft.length || orderRight.length) {
-      if (orderLeft.length && orderRight.length) {
-        res.push(
-          orderLeft[0] > orderRight[0] ? orderRight.shift() : orderLeft.shift()
-        )
-      } else if (orderLeft.length) {
-        res.push(orderLeft.shift())
-      } else if (orderRight.length) {
-        res.push(orderRight.shift())
-      }
-    }
-    return res
-  }
-  const res = rec(this)
-  console.log(res)
-}
+//     const res = []
+//     while (orderLeft.length || orderRight.length) {
+//       if (orderLeft.length && orderRight.length) {
+//         res.push(
+//           orderLeft[0] > orderRight[0] ? orderRight.shift() : orderLeft.shift()
+//         )
+//       } else if (orderLeft.length) {
+//         res.push(orderLeft.shift())
+//       } else if (orderRight.length) {
+//         res.push(orderRight.shift())
+//       }
+//     }
+//     return res
+//   }
+//   const res = rec(this)
+//   console.log(res)
+// }
 
-// const arr = [5, 4, 3]
-const arr = [2, 4, 5, 3, 1]
-arr.mergeSort()
+// // const arr = [5, 4, 3]
+// const arr = [2, 4, 5, 3, 1]
+// arr.mergeSort()
+
+// ! 快速排序
+// 从数组中任意选择一个基准，通过基准值去分类（大于基准值的放右边，小于基准值的放左边）
+
+// Array.prototype.quickSort = function () {
+//   const rec = (arr) => {
+//     if (arr.length === 1) return arr
+//     const mid = arr[0]
+//     const left = []
+//     const right = []
+//     for (let i = 1; i < arr.length; i++) {
+//       if (arr[i] > mid) {
+//         right.push(arr[i])
+//       } else {
+//         left.push(arr[i])
+//       }
+//     }
+
+//     return [...rec(left), mid, ...rec(right)]
+//   }
+//   const res = rec(this)
+//   console.log(res)
+// }
+
+// const arr = [2, 4, 5, 3, 1]
+// arr.quickSort()

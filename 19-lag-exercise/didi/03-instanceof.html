@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>判断一个对象是不是属于某个类</title>
+  </head>
+  <body></body>
+  <script>
+    function aInstanceof(instance, Ctor) {
+      let prototype = Ctor.prototype
+      instanceProto = Object.getPrototypeOf(instance)
+      while (instanceProto) {
+        if (instanceProto === prototype) {
+          return true
+        }
+        instanceProto = Object.getPrototypeOf(instanceProto)
+      }
+      return false
+    }
+
+    class Person {
+      constructor(name) {
+        this.name = name
+      }
+    }
+
+    const p1 = new Person('aic')
+
+    console.log(p1)
+    console.log(aInstanceof(p1, Person))
+    console.log(aInstanceof(p1, Object))
+    console.log(aInstanceof(p1, Function))
+    console.log('=====')
+    console.log(p1 instanceof Person)
+    console.log(p1 instanceof Object)
+    console.log(p1 instanceof Function)
+  </script>
+</html>

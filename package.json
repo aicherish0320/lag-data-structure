@@ -19,6 +19,7 @@
   "homepage": "https://github.com/aicherish0320/lag-data-structure#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "nodemon": "^2.0.16",
     "typescript": "^4.6.4"
   },
   "devDependencies": {

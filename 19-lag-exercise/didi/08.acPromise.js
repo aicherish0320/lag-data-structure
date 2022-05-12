@@ -31,14 +31,19 @@ class AcPromise {
     }
   }
   then = (successCallback, failureCallback) => {
-    if (this.status === FULFILLED) {
-      successCallback(this.value)
-    } else if (this.status === REJECTED) {
-      failureCallback(this.reason)
-    } else {
-      this.successCallback.push(successCallback)
-      this.failureCallback.push(failureCallback)
-    }
+    const promise2 = new AcPromise((resolve, reject) => {
+      if (this.status === FULFILLED) {
+        this.successValue = successCallback(this.value)
+        resolve(this.successValue)
+      } else if (this.status === REJECTED) {
+        this.failureReason = failureCallback(this.reason)
+        reject(this.failureReason)
+      } else {
+        this.successCallback.push(successCallback)
+        this.failureCallback.push(failureCallback)
+      }
+    })
+    return promise2
   }
 }
 

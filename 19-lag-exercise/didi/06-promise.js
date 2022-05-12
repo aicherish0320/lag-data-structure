@@ -8,22 +8,14 @@
 const AcPromise = require('./08.acPromise')
 
 const promise = new AcPromise((resolve, reject) => {
-  console.log('executor')
-  // 如果调用 resolve 方法，会将当前的 promise 状态改为 fulfilled
-  // 如果调用 reject 方法，会将当前的 promise 状态改为 rejected
-  setTimeout(() => {
-    resolve('success')
-  }, 1000)
-  // reject('failure')
+  resolve('success')
 })
 
-promise.then(
-  (value) => {
-    // 当 promise 是 fulfilled 态的时候调用
-    console.log('value >>> ', value)
-  },
-  (reason) => {
-    // 当 promise 是 rejected 态的时候调用
-    console.log('reason >>> ', reason)
-  }
-)
+promise
+  .then((value) => {
+    console.log(value)
+    return 'promise1 value'
+  })
+  .then((value) => {
+    console.log(value)
+  })

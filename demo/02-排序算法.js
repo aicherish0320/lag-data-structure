@@ -89,5 +89,27 @@ const mergeSort = (arr) => {
 // console.log(mergeSort(arr))
 
 /**
- *
+ * 快速排序
  */
+
+const quickSort = (arr) => {
+  const rec = (arr) => {
+    if (arr.length === 1) return arr
+
+    const left = []
+    const right = []
+    const mid = arr[0]
+
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > mid) {
+        right.push(arr[i])
+      } else {
+        left.push(arr[i])
+      }
+    }
+
+    return [...rec(left), mid, ...rec(right)]
+  }
+  return rec(arr)
+}
+console.log(quickSort(arr))

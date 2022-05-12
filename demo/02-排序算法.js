@@ -20,7 +20,7 @@ const bubbleSort = (arr) => {
 /**
  * 选择排序
  */
-const selectSort = (arr) => {
+const selectionSort = (arr) => {
   const len = arr.length
   for (let i = 0; i < len; i++) {
     for (let j = i + 1; j < len; j++) {
@@ -34,6 +34,27 @@ const selectSort = (arr) => {
   }
 }
 
-selectSort(arr)
+// selectSort(arr)
+
+/**
+ * 插入排序
+ */
+const insertionSort = (arr) => {
+  for (let i = 1; i < arr.length; i++) {
+    const temp = arr[i]
+    let j = i
+    while (j > 0) {
+      if (arr[j - 1] > temp) {
+        arr[j] = arr[j - 1]
+      } else {
+        break
+      }
+      j--
+    }
+    arr[j] = temp
+  }
+}
+
+insertionSort(arr)
 
 console.log(arr)

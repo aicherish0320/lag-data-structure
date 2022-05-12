@@ -1,10 +1,10 @@
-Array.prototype.mergeSort = function () {
+const mergeSort = (arr) => {
   const rec = (arr) => {
     if (arr.length === 1) return arr
     const mid = Math.floor(arr.length / 2)
     const left = arr.slice(0, mid)
-    const right = arr.slice(mid, arr.length)
-
+    const right = arr.slice(mid)
+    debugger
     const orderLeft = rec(left)
     const orderRight = rec(right)
 
@@ -12,7 +12,7 @@ Array.prototype.mergeSort = function () {
     while (orderLeft.length || orderRight.length) {
       if (orderLeft.length && orderRight.length) {
         res.push(
-          orderLeft[0] < orderRight[0] ? orderLeft.shift() : orderRight.shift()
+          orderLeft[0] > orderRight[0] ? orderRight.shift() : orderLeft.shift()
         )
       } else if (orderLeft.length) {
         res.push(orderLeft.shift())
@@ -22,16 +22,10 @@ Array.prototype.mergeSort = function () {
     }
     return res
   }
-
-  const res = rec(this)
-
-  res.forEach((n, i) => {
-    this[i] = n
-  })
+  return rec(arr)
 }
 
-// const arr = [5, 4, 3, 2, 1]
-// const arr = [2, 4, 5, 3, 1]
-const arr = [5, 4, 3]
-arr.mergeSort()
-console.log(arr)
+// 4, 5,
+const arr = [2, 3, 1]
+
+console.log(mergeSort(arr))

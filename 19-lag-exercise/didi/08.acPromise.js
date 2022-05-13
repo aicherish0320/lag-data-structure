@@ -1,5 +1,5 @@
 /**
- * 手写 Promise
+ * Promise 是一个类
  */
 
 const PENDING = 'pending'
@@ -15,29 +15,26 @@ class AcPromise {
   reason = undefined
   successCallback = []
   failureCallback = []
-  // 这里使用箭头函数，目的是在调用此函数的时候，this 指向当前 promise
   resolve = (value) => {
     this.value = value
-    this.status = FULFILLED
     while (this.successCallback.length) {
-      this.successCallback.shift()(this.value)
+      this.successCallback.shift()()
     }
+    this.status = FULFILLED
   }
   reject = (reason) => {
     this.reason = reason
-    this.status = REJECTED
     while (this.failureCallback.length) {
-      this.failureCallback.shift()(this.value)
+      this.failureCallback.shift()()
     }
+    this.status = REJECTED
   }
   then = (successCallback, failureCallback) => {
     const promise2 = new AcPromise((resolve, reject) => {
       if (this.status === FULFILLED) {
-        this.successValue = successCallback(this.value)
-        resolve(this.successValue)
+        successCallback(this.value)
       } else if (this.status === REJECTED) {
-        this.failureReason = failureCallback(this.reason)
-        reject(this.failureReason)
+        failureCallback(this.reason)
       } else {
         this.successCallback.push(successCallback)
         this.failureCallback.push(failureCallback)
@@ -45,6 +42,9 @@ class AcPromise {
     })
     return promise2
   }
+  catch = () => {}
+  static all = () => {}
+  static resolve = () => {}
 }
 
 module.exports = AcPromise

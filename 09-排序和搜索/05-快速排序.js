@@ -18,3 +18,4 @@ Array.prototype.quickSort = function () {
 
 const arr = [2, 4, 5, 3, 1]
 arr.quickSort()
+console.log('arr >>> ', arr)

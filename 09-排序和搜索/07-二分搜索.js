@@ -14,7 +14,7 @@ Array.prototype.binarySearch = function (item) {
   return -1
 }
 
-const arr = [1, 2, 3, 4, 5]
+const arr = [1, 2]
 
 const res = arr.binarySearch(2)
 console.log(res)

@@ -1,27 +1,24 @@
 /**
- * 使用 js 反转单向链表
+ * 实现二分查找
  */
 
-const node = {
-  val: 1
-}
-node.next = {
-  val: 2
-}
-node.next.next = {
-  val: 3
-}
+// [1, 2, 3, 4, 5]
+const binarySearch = (arr, value) => {
+  const length = arr.length
+  let low = 0
+  let high = length - 1
 
-const reverseList = (head) => {
-  let p1 = head
-  let p2 = null
-  while (p1) {
-    let temp = p1.next
-    p1.next = p2
-    p2 = p1
-    p1 = temp
+  while (low <= high) {
+    const mid = Math.floor((low + high) / 2)
+    if (value === arr[mid]) {
+      return mid
+    } else if (value > arr[mid]) {
+      low = mid + 1
+    } else if (value < arr[mid]) {
+      high = mid - 1
+    }
   }
-  return p2
+  return -1
 }
 
-console.log(reverseList(node))
+console.log(binarySearch([1, 2, 3, 4, 5], 5))

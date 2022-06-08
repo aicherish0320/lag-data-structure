@@ -1,33 +1,27 @@
 /**
- * 判断一个字符串是否括号匹配
+ * 使用 js 反转单向链表
  */
 
-const str = '[{[}]]'
-
-const fn = (str) => {
-  if (str.length % 2 !== 0) return false
-  // 栈
-  const stack = []
-
-  for (let i = 0; i < str.length; i++) {
-    const value = str[i]
-    if (['[', '{', '('].indexOf(value) > -1) {
-      stack.push(value)
-    } else {
-      const last = stack[stack.length - 1]
-      if (
-        (last === '[' && value === ']') ||
-        (last === '{' && value === '}') ||
-        (last === '(' && value === ')')
-      ) {
-        stack.pop()
-      } else {
-        return false
-      }
-    }
-  }
-  console.log('stack >>> ', stack.length)
-  return !stack.length
+const node = {
+  val: 1
+}
+node.next = {
+  val: 2
+}
+node.next.next = {
+  val: 3
 }
 
-console.log(fn(str))
+const reverseList = (head) => {
+  let p1 = head
+  let p2 = null
+  while (p1) {
+    let temp = p1.next
+    p1.next = p2
+    p2 = p1
+    p1 = temp
+  }
+  return p2
+}
+
+console.log(reverseList(node))

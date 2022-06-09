@@ -1,24 +1,38 @@
 /**
- * 实现二分查找
+ * 找出一个数组中和为 n 的两个数
  */
 
-// [1, 2, 3, 4, 5]
-const binarySearch = (arr, value) => {
-  const length = arr.length
-  let low = 0
-  let high = length - 1
+const arr = [1, 2, 3, 4, 5]
 
-  while (low <= high) {
-    const mid = Math.floor((low + high) / 2)
-    if (value === arr[mid]) {
-      return mid
-    } else if (value > arr[mid]) {
-      low = mid + 1
-    } else if (value < arr[mid]) {
-      high = mid - 1
+const fn = (arr, value) => {
+  const map = {}
+  // for (let i = 0; i < arr.length; i++) {
+  //   for (let j = i; j < arr.length; j++) {
+  //     if (arr[i] + arr[j] === value) {
+  //       return [arr[i], arr[j]]
+  //     }
+  //   }
+  // }
+  // for (let i = 0; i < arr.length; i++) {
+  //   const other = value - arr[i]
+  //   if (!map[other]) {
+  //     map[arr[i]] = other
+  //   } else {
+  //     return [other, arr[i]]
+  //   }
+  // }
+  let i, j
+  for (i = 1, j = 0; i < arr.length; i++) {
+    if (arr[i] + arr[j] === value) {
+      return [arr[j], arr[i]]
+    } else {
+      if (i === arr.length - 1) {
+        let temp = i
+        j = temp
+        i++
+      }
     }
   }
-  return -1
 }
 
-console.log(binarySearch([1, 2, 3, 4, 5], 5))
+console.log(fn(arr, 6))

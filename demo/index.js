@@ -31,12 +31,12 @@ const nodes = {
 // }
 // const fn = (root) => {
 //   const stack = [root]
-//   while (stack.length) {
-//     const node = stack.pop()
-//     console.log(node.val)
-//     node.right && stack.push(node.right)
-//     node.left && stack.push(node.left)
-//   }
+// while (stack.length) {
+//   const node = stack.pop()
+//   console.log(node.val)
+//   node.right && stack.push(node.right)
+//   node.left && stack.push(node.left)
+// }
 // }
 // 中序遍历
 // const fn = (root) => {
@@ -44,24 +44,40 @@ const nodes = {
 //   console.log(root.val)
 //   root.right && fn(root.right)
 // }
-const fn = (root) => {
-  const stack = []
-  let p = root
-  while (stack.length || p) {
-    while (p) {
-      stack.push(p)
-      p = p.left
-    }
-    const n = stack.pop()
-    console.log(n.val)
-    p = n.right
-  }
-}
+// const fn = (root) => {
+//   const stack = []
+//   let p = root
+//   while (stack.length || p) {
+//     while (p) {
+//       stack.push(p)
+//       p = p.left
+//     }
+//     const n = stack.pop()
+//     console.log(n.val)
+//     p = n.right
+//   }
+// }
 // 后续遍历
 // const fn = (root) => {
 //   root.left && fn(root.left)
 //   root.right && fn(root.right)
 //   console.log(root.val)
 // }
+const fn = (root) => {
+  const stack = [root]
+  const outputStack = []
 
-console.log(fn(nodes))
+  while (stack.length) {
+    const node = stack.pop()
+    outputStack.push(node)
+    node.left && stack.push(node.left)
+    node.right && stack.push(node.right)
+  }
+
+  while (outputStack.length) {
+    const node = outputStack.pop()
+    console.log(node.val)
+  }
+}
+
+fn(nodes)

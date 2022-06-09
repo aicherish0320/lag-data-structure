@@ -38,7 +38,26 @@ const center = (root) => {
 
 /**
  * @description 后序遍历
+ *
+ * 左右中 -> 中右左 -> stack 左右中
  */
+
+const last = (root) => {
+  const stack = []
+  const outputStack = []
+
+  while (stack.length) {
+    const node = stack.pop()
+    outputStack.push(node.val)
+    node.left && stack.push(node.left)
+    node.right && stack.push(node.right)
+  }
+
+  while (outputStack.length) {
+    const node = outputStack.pop()
+    console.log(node.val)
+  }
+}
 
 // const last = (root) => {
 //   if (!root) return

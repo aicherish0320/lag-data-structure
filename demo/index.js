@@ -1,38 +1,67 @@
 /**
- * 找出一个数组中和为 n 的两个数
+ * 二叉树的先中后续遍历
  */
 
-const arr = [1, 2, 3, 4, 5]
-
-const fn = (arr, value) => {
-  const map = {}
-  // for (let i = 0; i < arr.length; i++) {
-  //   for (let j = i; j < arr.length; j++) {
-  //     if (arr[i] + arr[j] === value) {
-  //       return [arr[i], arr[j]]
-  //     }
-  //   }
-  // }
-  // for (let i = 0; i < arr.length; i++) {
-  //   const other = value - arr[i]
-  //   if (!map[other]) {
-  //     map[arr[i]] = other
-  //   } else {
-  //     return [other, arr[i]]
-  //   }
-  // }
-  let i, j
-  for (i = 1, j = 0; i < arr.length; i++) {
-    if (arr[i] + arr[j] === value) {
-      return [arr[j], arr[i]]
-    } else {
-      if (i === arr.length - 1) {
-        let temp = i
-        j = temp
-        i++
-      }
+const nodes = {
+  val: 'a',
+  left: {
+    val: 'b',
+    left: {
+      val: 'd'
+    },
+    right: {
+      val: 'f'
+    }
+  },
+  right: {
+    val: 'c',
+    left: {
+      val: 'e'
+    },
+    right: {
+      val: 'g'
     }
   }
 }
+// 先序遍历
+// const fn = (root) => {
+//   console.log(root.val)
+//   root.left && fn(root.left)
+//   root.right && fn(root.right)
+// }
+// const fn = (root) => {
+//   const stack = [root]
+//   while (stack.length) {
+//     const node = stack.pop()
+//     console.log(node.val)
+//     node.right && stack.push(node.right)
+//     node.left && stack.push(node.left)
+//   }
+// }
+// 中序遍历
+// const fn = (root) => {
+//   root.left && fn(root.left)
+//   console.log(root.val)
+//   root.right && fn(root.right)
+// }
+const fn = (root) => {
+  const stack = []
+  let p = root
+  while (stack.length || p) {
+    while (p) {
+      stack.push(p)
+      p = p.left
+    }
+    const n = stack.pop()
+    console.log(n.val)
+    p = n.right
+  }
+}
+// 后续遍历
+// const fn = (root) => {
+//   root.left && fn(root.left)
+//   root.right && fn(root.right)
+//   console.log(root.val)
+// }
 
-console.log(fn(arr, 6))
+console.log(fn(nodes))

@@ -1,87 +1,36 @@
 /**
- *
+  青蛙跳台阶
+  一只青蛙，一次可跳一级，也可跳二级
+  问：青蛙跳到 n 级台阶，总共有多少种方式？
+
+  f(n) = fn(n - 1) + f(n - 2)
  */
 
-const PENDING = 'pending'
-const FULFILLED = 'fulfilled'
-const REJECTED = 'rejected'
+const fn = (n) => {
+  if (n === 1) return 1
+  if (n === 2) return 2
 
-class AcPromise {
-  constructor(executor) {
-    executor(this.resolve, this.reject)
-  }
-  status = PENDING
-  value = undefined
-  successCallback = []
-  failCallback = []
-  reason = undefined
-  resolve = (value) => {
-    if (this.status !== PENDING) return
-    this.value = value
-    this.status = FULFILLED
-
-    while (this.successCallback.length) {
-      this.successCallback.shift()(value)
-    }
-  }
-  reject = (reason) => {
-    if (this.status !== PENDING) return
-    this.reason = reason
-    this.status = REJECTED
-
-    while (this.failCallback.length) {
-      this.failCallback.shift()(reason)
-    }
-  }
-  then(successCallback, errorCallback) {
-    if (this.status === FULFILLED) {
-      successCallback(this.value)
-    } else if (this.status === REJECTED) {
-      errorCallback(this.reason)
-    } else {
-      this.successCallback.push(successCallback)
-      this.failCallback.push(errorCallback)
-    }
-  }
-  static all(arr) {
-    const result = []
-    let index = 0
-
-    return new AcPromise((resolve, reject) => {
-      function addData(key, value) {
-        result[key] = value
-        index++
-
-        if (index === arr.length) {
-          resolve(result)
-        }
-      }
-
-      arr.forEach((item, index) => {
-        item.then(
-          (value) => addData(index, value),
-          (reason) => addData(index, reason)
-        )
-      })
-    })
-  }
+  return fn(n - 1) + fn(n - 2)
 }
 
-const p1 = new Promise((resolve, reject) => {
-  resolve('success1')
-})
-const p2 = new Promise((resolve, reject) => {
-  // resolve('success2')
-  reject('error')
-})
-// p.then((payload) => {
-//   console.log(payload)
-// })
+const fn2 = (n) => {
+  let n1 = 2
+  let n2 = 1
+  let res = 0
 
-Promise.all([p1, p2])
-  .then((success) => {
-    console.log('success >>> ', success)
-  })
-  .catch((error) => {
-    console.log(error)
-  })
+  for (let i = 2; i < n; i++) {
+    res = n1 + n2
+    n2 = n1
+    n1 = res
+  }
+
+  return res
+}
+
+console.time('fn')
+console.log(fn(20))
+console.timeEnd('fn')
+
+console.time('fn2')
+console.log(fn2(20))
+console.timeEnd('fn2')

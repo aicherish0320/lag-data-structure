@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 浏览器有啥效果
+    // function demo() {
+    //   const now = Date.now()
+    //   document.body.style.backgroundColor = 'red'
+    //   while (Date.now() - now <= 2000) {
+    //     continue
+    //   }
+    //   document.body.style.backgroundColor = 'pink'
+    // }
+    // demo()
+
+    function demo1() {
+      // setTimeout(() => {
+      console.log('timeout 开始执行')
+      Promise.resolve().then(() => {
+        //将dom操作移到这里。
+        document.body.style.backgroundColor = 'red'
+        var now = Date.now()
+        while (Date.now() - now < 2000) {}
+        console.log('微任务执行完成')
+      })
+      var now = Date.now()
+      while (Date.now() - now < 2000) {}
+      console.log('宏任务执行完成')
+      // }, 1000)
+    }
+    demo1()
+    // timeout 开始执行
+    // 宏任务执行完成
+    // 微任务执行完成
+    // #demo的内容显示red
+
+    /*
+    
+    由上可知，js对dom的操作是在任务队列里的微任务都执行结束后才执行的。
+    js代码执行由js引擎线程负责
+    dom样式更改由GUI渲染线程负责
+    所以两个线程互斥，造成了dom操作“异步”的效果
+    而且GUI渲染会进行优化，多个同一dom的操作会合并
+
+    */
+  </script>
+</html>

@@ -1,36 +1,28 @@
-/**
-  青蛙跳台阶
-  一只青蛙，一次可跳一级，也可跳二级
-  问：青蛙跳到 n 级台阶，总共有多少种方式？
+// for (var a = 0; a < 200; a++) {
+//   setTimeout(function () {
+//     console.log(a)
+//   }, 1000)
+// }
 
-  f(n) = fn(n - 1) + f(n - 2)
- */
+// for (var a = 0; a < 10; a++) {
+//   ;(function (i) {
+//     setTimeout(() => {
+//       console.log(i)
+//     }, 1000)
+//   })(a)
+// }
 
-const fn = (n) => {
-  if (n === 1) return 1
-  if (n === 2) return 2
+// 扫码登录，陈述一下技术设计
 
-  return fn(n - 1) + fn(n - 2)
-}
-
-const fn2 = (n) => {
-  let n1 = 2
-  let n2 = 1
-  let res = 0
-
-  for (let i = 2; i < n; i++) {
-    res = n1 + n2
-    n2 = n1
-    n1 = res
-  }
-
-  return res
-}
-
-console.time('fn')
-console.log(fn(20))
-console.timeEnd('fn')
-
-console.time('fn2')
-console.log(fn2(20))
-console.timeEnd('fn2')
+/*
+  整个扫码过程中，（PC端、移动端、服务器端）分别做了几件事情
+  PC端：
+  1> 访问服务器，返回二维码 + ID
+  2> 轮询服务器，等待服务器返回ID + 绑定用户信息
+  移动端：
+  1> 扫描二维码，通知服务器，ID + 用户信息你传递给服务器
+  服务器做了三件事
+  1> PC端请求过来的时候，返回给 PC 端拥有一个唯一标识ID 的二维码
+  2> 移动端传递ID + 用户信息过来时，服务器对 ID + 用户信息做一个绑定
+  3> 应对PC 端端轮询请求，响应给 PC 端，本 ID 对应的用户信息
+*/

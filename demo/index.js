@@ -1,28 +1,28 @@
-// for (var a = 0; a < 200; a++) {
-//   setTimeout(function () {
-//     console.log(a)
-//   }, 1000)
-// }
+// 给定一个字符串，请统计字符串中出现最多的字母和次数
 
-// for (var a = 0; a < 10; a++) {
-//   ;(function (i) {
-//     setTimeout(() => {
-//       console.log(i)
-//     }, 1000)
-//   })(a)
-// }
+const str = 'acbcc'
 
-// 扫码登录，陈述一下技术设计
+const fn = (str) => {
+  const map = {}
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i]
+    if (!map[char]) {
+      map[char] = 1
+    } else {
+      map[char]++
+    }
+  }
 
-/*
-  整个扫码过程中，（PC端、移动端、服务器端）分别做了几件事情
-  PC端：
-  1> 访问服务器，返回二维码 + ID
-  2> 轮询服务器，等待服务器返回ID + 绑定用户信息
-  移动端：
-  1> 扫描二维码，通知服务器，ID + 用户信息你传递给服务器
-  服务器做了三件事
-  1> PC端请求过来的时候，返回给 PC 端拥有一个唯一标识ID 的二维码
-  2> 移动端传递ID + 用户信息过来时，服务器对 ID + 用户信息做一个绑定
-  3> 应对PC 端端轮询请求，响应给 PC 端，本 ID 对应的用户信息
-*/
+  let tempKey
+  Object.keys(map).forEach((key) => {
+    if (!tempKey) {
+      tempKey = key
+    }
+    if (map[key] > map[tempKey]) {
+      tempKey = key
+    }
+  })
+  return [tempKey, map[tempKey]]
+}
+
+console.log('map >>> ', fn(str))

@@ -1,28 +1,58 @@
-// 给定一个字符串，请统计字符串中出现最多的字母和次数
+// 给定一个字符串，请统计字符串中连续字符出现的字符和次数
+const str = 'aaacacccc'
 
-const str = 'acbcc'
-
-const fn = (str) => {
-  const map = {}
+const fn1 = (str) => {
+  let count = 0
+  let last = { count: 0 }
   for (let i = 0; i < str.length; i++) {
-    const char = str[i]
-    if (!map[char]) {
-      map[char] = 1
+    for (let j = i; j < str.length; j++) {
+      if (str[i] === str[j]) {
+        count++
+        if (j === str.length - 1) {
+          if (count > last.count) {
+            last = { count, char: str[i] }
+          }
+          count = 0
+        }
+      } else {
+        if (count > last.count) {
+          last = { count, char: str[i] }
+        }
+        count = 0
+        break
+      }
+    }
+  }
+  console.log(count, last)
+}
+
+const fn2 = (str) => {
+  let current = 0
+  let last = { count: 0 }
+
+  let i, j
+  for (i = 0, j = 0; i < str.length; j++) {
+    if (str[i] === str[j]) {
+      current++
+      if (j === str.length - 1) {
+        if (current > last.count) {
+          last = { count: current, char: str[i] }
+        }
+        current = 0
+      }
     } else {
-      map[char]++
+      if (current > last.count) {
+        last = { count: current, char: str[i] }
+      }
+
+      current = 0
+
+      i = j
+      j--
     }
   }
 
-  let tempKey
-  Object.keys(map).forEach((key) => {
-    if (!tempKey) {
-      tempKey = key
-    }
-    if (map[key] > map[tempKey]) {
-      tempKey = key
-    }
-  })
-  return [tempKey, map[tempKey]]
+  console.log(last)
 }
 
-console.log('map >>> ', fn(str))
+fn2(str)
